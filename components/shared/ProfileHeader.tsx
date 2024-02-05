@@ -9,6 +9,7 @@ interface Params {
     username: string;
     imageUrl: string;
     bio: string;
+    type?: 'User'|'Community';
 }
 const ProfileHeader = ({
     accountId,
@@ -16,7 +17,8 @@ const ProfileHeader = ({
     name,
     username,
     imageUrl,
-    bio }: Params) => {
+    bio,
+    type }: Params) => {
     return (
         <div className='flex w-full flex-col justify-start'>
             <div className='flex items-center justify-between'>
