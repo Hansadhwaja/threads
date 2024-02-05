@@ -110,12 +110,14 @@ const ThreadCard = ({
                         {formatDateString(createdAt)}
                         {community && ` - ${community.name} Community`}
                     </p>
+                    <div className="relative h-5 w-5">
                     <Image
                         src={community.image}
                         alt={community.name}
-                        width={14}
-                        height={14}
+                        fill
                         className="ml-1 rounded-full object-cover" />
+                    </div>
+                    
                 </Link>
             )}
 
