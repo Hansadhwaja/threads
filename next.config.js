@@ -11,6 +11,7 @@ const nextConfig = {
       "images.clerk.dev",
       "uploadthing.com",
       "placehold.co",
+      'utfs.io',
     ],
   },
   typescript: {
