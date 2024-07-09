@@ -3,15 +3,23 @@ import ProfileHeader from "@/components/shared/ProfileHeader";
 import ThreadsTab from "@/components/shared/ThreadsTab";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { profileTabs } from "@/constants";
-import { fetchUser } from "@/lib/actions/user.actions";
+import { fetchUser, updateManualUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+
 
 const Page = async ({ params }: { params: { id: string } }) => {
   const user = await currentUser();
 
   if (!user) return null;
+
+  await updateManualUser({
+    username: user?.username || "",
+    name: user?.firstName || "",
+    image: user?.imageUrl || "",
+    userId: user?.id || ""
+  });
 
   const userInfo = await fetchUser(params.id);
 
@@ -57,7 +65,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
                 currentUserId={user.id}
                 accountId={userInfo.id}
                 accountType="User"
-                />
+              />
             </TabsContent>
           ))}
         </Tabs>

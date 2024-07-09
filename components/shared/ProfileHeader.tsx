@@ -1,5 +1,9 @@
+'use client'
+
+import { useClerk } from '@clerk/nextjs';
 import Image from 'next/image';
-import React from 'react'
+import { Button } from '../ui/button';
+
 
 
 interface Params {
@@ -9,7 +13,7 @@ interface Params {
     username: string;
     imageUrl: string;
     bio: string;
-    type?: 'User'|'Community';
+    type?: 'User' | 'Community';
 }
 const ProfileHeader = ({
     accountId,
@@ -19,10 +23,18 @@ const ProfileHeader = ({
     imageUrl,
     bio,
     type }: Params) => {
+
+    const { openUserProfile } = useClerk();
+
+    const handleManagePersonalAccount = () => {
+        openUserProfile();
+
+    };
+
     return (
         <div className='flex w-full flex-col justify-start'>
             <div className='flex items-center justify-between'>
-                <div className='flex items-center gap-3'>
+                <div className='flex items-center gap-3 w-full'>
                     <div className='relative h-20 w-20 object-cover'>
                         <Image
                             src={imageUrl}
@@ -35,9 +47,18 @@ const ProfileHeader = ({
                         <h2 className='text-left text-heading3-bold text-light-1'>{name}</h2>
                         <p className='text-base-regular text-gray-1'>@{username}</p>
                     </div>
+
+                    {accountId === authUserId && (
+                        <div className='flex justify-end rounded-xl'>
+                            <Button onClick={handleManagePersonalAccount}>
+                                Manage Personal Account
+                            </Button>
+                        </div>
+                    )}
+
                 </div>
             </div>
-                 {/* TODO:COMMUNITY */}
+            {/* TODO:COMMUNITY */}
             <p className='mt-6 max-w-lg text-base-regular text-light-2'>{bio}</p>
             <div className='mt-12 h-0.5 w-full bg-dark-3' />
 

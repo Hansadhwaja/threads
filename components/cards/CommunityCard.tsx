@@ -52,7 +52,7 @@ function CommunityCard({ id, name, username, imgUrl, bio, members }: Props) {
                                     key={index}
                                     src={member.image}
                                     alt={`user_${index}`}
-                                   fill
+                                    fill
                                     className={`${index !== 0 && "-ml-2"
                                         } rounded-full object-cover`}
                                 />

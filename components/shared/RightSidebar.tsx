@@ -1,14 +1,19 @@
-export default function RightSidebar(){
-    return(
+import SuggestedCommunities from "./SuggestedCommunities";
+import SuggestedUsers from "./SuggestedUsers";
+
+export default function RightSidebar() {
+    return (
         <section className="custom-scrollbar rightsidebar">
             <div className="flex flex-1 flex-col">
                 <h3 className="text-heading4-medium text-light-1">
-                    Suggested Communities</h3>
+                    <SuggestedCommunities />
+                </h3>
 
             </div>
             <div className="flex flex-1 flex-col">
                 <h3 className="text-heading4-medium text-light-1">
-                    Suggested Users</h3>
+                    <SuggestedUsers />
+                </h3>
 
             </div>
 

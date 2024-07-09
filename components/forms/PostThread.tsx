@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -56,7 +55,7 @@ function PostThread({ userId }: { userId: string }) {
               <FormLabel className="text-base-semibold text-light-2" >
                 Content
               </FormLabel>
-              <FormControl className="no-focus border border-dark-4 bg-dark-3 text-light-1">
+              <FormControl className="no-focus border bg-dark-2 text-light-1">
                 <Textarea
                   rows={15}
                   {...field}

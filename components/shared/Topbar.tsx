@@ -4,7 +4,9 @@ import Image from "next/image";
 import { SignedIn, SignOutButton, OrganizationSwitcher } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 
+
 export default function Topbar() {
+  
     return (
         <nav className="topbar">
             <Link href="/" className="flex items-center gap-4">
@@ -17,6 +19,14 @@ export default function Topbar() {
             </Link>
 
             <div className="flex items-center gap-1">
+                <OrganizationSwitcher
+                    appearance={{
+                        baseTheme: dark,
+                        elements: {
+                            organizationSwitcherTrigger: "py-2 px-4"
+                        }
+                    }}
+                />
                 <div className="block md:hidden">
                     <SignedIn>
                         <SignOutButton>
@@ -31,21 +41,9 @@ export default function Topbar() {
                             </div>
 
                         </SignOutButton>
-
                     </SignedIn>
 
                 </div>
-                <OrganizationSwitcher
-                    appearance={{
-                        baseTheme: dark,
-                        elements: {
-                            organizationSwitcherTrigger: "py-2 px-4"
-                        }
-                    }} />
-
-
-
-
             </div>
         </nav>
     )
