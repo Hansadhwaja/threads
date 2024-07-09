@@ -40,6 +40,8 @@ const ThreadCard = ({
     isComment,
 }: Props) => {
 
+
+
     return (
         <article className={`flex w-full flex-col rounded-xl ${isComment ? 'px-0 xs:px-7' : 'bg-dark-2 p-7'} `}>
             <div className="flex items-start justify-between">
@@ -65,8 +67,13 @@ const ThreadCard = ({
                         <p className="mt-2 text-small-regular text-light-2">{content}</p>
                         <div className={`${isComment && 'mb-10'} mt-5 flex flex-col gap-3`}>
                             <div className="flex gap-3.5">
-                                <LikeButton />
-                                <Link href={`/thread/${id}`} >
+                                <LikeButton
+                                    threadId={id}
+                                    userId={author.id}
+                                    currentUserId={currentUserId}
+                                />
+
+                                <Link href={`/thread/${id}`} className="flex" >
                                     <Image
                                         src='/assets/reply.svg'
                                         alt="reply"
@@ -74,6 +81,7 @@ const ThreadCard = ({
                                         height={24}
                                         className="cursor-pointer object-contain"
                                     />
+                                    <p className="text-slate-400 font-light -mt-2">{comments.length}</p>
                                 </Link>
                                 <Image
                                     src='/assets/repost.svg'

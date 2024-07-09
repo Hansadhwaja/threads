@@ -1,21 +1,55 @@
 
 'use client'
+import { createLike, deleteLike, fetchLikeLength, userLikedOrNot } from '@/lib/actions/like.actions';
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from "react";
 
-const LikeButton = () => {
+const LikeButton = ({ threadId, userId, currentUserId }: { threadId: string, userId: string, currentUserId: string }) => {
     const [isLiked, setIsLiked] = useState(false);
-    return (
-        <Image
-            src={`/assets/heart-${isLiked ? 'filled' : 'gray'}.svg`}
-            alt="heart"
-            width={24}
-            height={24}
-            className='cursor-pointer object-cover'
-            onClick={() => { setIsLiked(!isLiked) }}
+    const [likeLength, setLikeLength] = useState(0);
 
-        />
+    const handleClick = async () => {
+        if (userId === currentUserId) {
+            alert('As the owner of this Thread, You can not like this Thread.');
+        } else {
+            if (isLiked) {
+                setIsLiked(false);
+                await deleteLike({ threadId });
+            }
+            else {
+                setIsLiked(true);
+                await createLike({
+                    threadId,
+                    userId
+                });
+            }
+        }
+    }
+
+    useEffect(() => {
+        async function fetchLikes() {
+            const liked = await userLikedOrNot({ threadId, userId });
+            setIsLiked(liked);
+            const userLiked = await fetchLikeLength({ threadId });
+            setLikeLength(userLiked);
+        }
+        fetchLikes();
+    }, [isLiked]);
+
+    return (
+        <div className='flex gap-2'>
+            <Image
+                src={`${isLiked ? '/assets/heart-filled.svg' : '/assets/heart-gray.svg'}`}
+                alt="heart"
+                width={24}
+                height={24}
+                className='cursor-pointer object-cover'
+                onClick={handleClick}
+            />
+            <p className='text-slate-400 font-light'>{likeLength} <span>{likeLength === 1 ?'Like':'Likes'}</span></p>
+        </div>
+
     )
 }
 

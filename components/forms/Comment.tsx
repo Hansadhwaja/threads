@@ -49,27 +49,27 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
 
   return (
     <Form {...form}>
-      <form className='comment-form' onSubmit={form.handleSubmit(onSubmit)}>
+      <form className=' flex flex-col sm:flex-row comment-form' onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
           name='thread'
           render={({ field }) => (
-            <FormItem className='flex w-full items-center gap-3'>
-              <FormLabel className="relative h-20 w-20 object-cover">
-              <Image
-                    src={currentUserImg}
-                    alt="profile photo"
-                   fill
-                    priority
-                    className='rounded-full  object-cover shadow-2xl'
-                  />
-                  </FormLabel>
-              <FormControl className='border-none bg-transparent'>
+            <FormItem className='flex flex-col sm:flex-row w-full sm:items-center gap-3'>
+              <FormLabel className="relative h-20 sm:w-24 w-20 object-cover">
+                <Image
+                  src={currentUserImg}
+                  alt="profile photo"
+                  fill
+                  priority
+                  className='rounded-full  object-cover shadow-2xl'
+                />
+              </FormLabel>
+              <FormControl className='border-none'>
                 <Input
                   type='text'
                   {...field}
                   placeholder='Comment...'
-                  className='no-focus text-light-1 outline-none'
+                  className='no-focus outline-none'
                 />
               </FormControl>
             </FormItem>
