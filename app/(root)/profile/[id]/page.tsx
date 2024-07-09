@@ -14,12 +14,15 @@ const Page = async ({ params }: { params: { id: string } }) => {
 
   if (!user) return null;
 
-  await updateManualUser({
-    username: user?.username || "",
-    name: user?.firstName || "",
-    image: user?.imageUrl || "",
-    userId: user?.id || ""
-  });
+  if (user) {
+
+    await updateManualUser({
+      username: user?.username || "",
+      name: user?.firstName || "",
+      image: user?.imageUrl || "",
+      userId: user?.id || ""
+    });
+  }
 
   const userInfo = await fetchUser(params.id);
 

@@ -49,8 +49,8 @@ const ProfileHeader = ({
                     </div>
 
                     {accountId === authUserId && (
-                        <div className='flex justify-end rounded-xl'>
-                            <Button onClick={handleManagePersonalAccount}>
+                        <div className='hidden sm:flex justify-end rounded-xl'>
+                            <Button className='bg-primary-500' onClick={handleManagePersonalAccount}>
                                 Manage Personal Account
                             </Button>
                         </div>
@@ -60,6 +60,13 @@ const ProfileHeader = ({
             </div>
             {/* TODO:COMMUNITY */}
             <p className='mt-6 max-w-lg text-base-regular text-light-2'>{bio}</p>
+            {accountId === authUserId && (
+                        <div className='flex sm:hidden justify-center mt-2 rounded-xl'>
+                            <Button onClick={handleManagePersonalAccount} className='bg-primary-500'>
+                                Manage Personal Account
+                            </Button>
+                        </div>
+                    )}
             <div className='mt-12 h-0.5 w-full bg-dark-3' />
 
         </div>
