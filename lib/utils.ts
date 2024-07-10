@@ -23,7 +23,7 @@ export function formatDateString(dateString: string) {
   const date = new Date(dateString);
 
   // Get user's local time zone
-  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const timeZone = 'Asia/Calcutta';
   console.log(timeZone);
   
 
