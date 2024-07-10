@@ -23,15 +23,17 @@ export function formatDateString(dateString: string) {
   const date = new Date(dateString);
   const formattedDate = date.toLocaleDateString(undefined, options);
 
-
-  const time = new Date(dateString).toISOString();
-  const formattedTime = new Date(time).toLocaleTimeString([], {
+  const formattedTime = date.toLocaleTimeString([], {
     hour: "numeric",
     minute: "2-digit",
   });
 
+  console.log(`${formattedTime} - ${formattedDate}`);
+  
+
   return `${formattedTime} - ${formattedDate}`;
 }
+
 
 // created by chatgpt
 export function formatThreadCount(count: number): string {
