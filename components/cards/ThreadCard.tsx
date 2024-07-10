@@ -132,3 +132,9 @@ const ThreadCard = ({
 }
 
 export default ThreadCard;
+
+
+// const formattedTime = date.toLocaleTimeString([], {
+//     hour: "numeric",
+//     minute: "2-digit",
+//   });

@@ -21,18 +21,27 @@ export function formatDateString(dateString: string) {
   };
 
   const date = new Date(dateString);
-  const formattedDate = date.toLocaleDateString(undefined, options);
 
-  const formattedTime = date.toLocaleTimeString([], {
-    hour: "numeric",
-    minute: "2-digit",
-  });
+  // Get user's local time zone
+  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  console.log(timeZone);
+  
+
+  // Convert UTC date to local time zone
+  const localDate = new Date(date.toLocaleString("en-US", { timeZone }));
+
+  // Format date and time
+  const formattedDate = localDate.toLocaleDateString(undefined, options);
+  const formattedTime = localDate.toLocaleTimeString([], {
+        hour: "numeric",
+        minute: "2-digit",
+      });
 
   console.log(`${formattedTime} - ${formattedDate}`);
-  
 
   return `${formattedTime} - ${formattedDate}`;
 }
+
 
 
 // created by chatgpt
