@@ -23,12 +23,14 @@ export function formatDateString(dateString: string) {
   const date = new Date(dateString);
   const formattedDate = date.toLocaleDateString(undefined, options);
 
-  const time = date.toLocaleTimeString([], {
+
+  const time = new Date(dateString).toISOString();
+  const formattedTime = new Date(time).toLocaleTimeString([], {
     hour: "numeric",
     minute: "2-digit",
   });
 
-  return `${time} - ${formattedDate}`;
+  return `${formattedTime} - ${formattedDate}`;
 }
 
 // created by chatgpt
