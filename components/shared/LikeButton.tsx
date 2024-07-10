@@ -12,7 +12,8 @@ const LikeButton = ({ threadId, userId, currentUserId }: { threadId: string, use
     const handleClick = async () => {
         if (userId === currentUserId) {
             alert('As the owner of this Thread, You can not like this Thread.');
-        } else {
+        }
+        else {
             if (isLiked) {
                 setIsLiked(false);
                 await deleteLike({ threadId });
@@ -21,7 +22,7 @@ const LikeButton = ({ threadId, userId, currentUserId }: { threadId: string, use
                 setIsLiked(true);
                 await createLike({
                     threadId,
-                    userId
+                    currentUserId
                 });
             }
         }
@@ -29,7 +30,7 @@ const LikeButton = ({ threadId, userId, currentUserId }: { threadId: string, use
 
     useEffect(() => {
         async function fetchLikes() {
-            const liked = await userLikedOrNot({ threadId, userId });
+            const liked = await userLikedOrNot({ threadId, currentUserId });
             setIsLiked(liked);
             const userLiked = await fetchLikeLength({ threadId });
             setLikeLength(userLiked);
@@ -47,7 +48,7 @@ const LikeButton = ({ threadId, userId, currentUserId }: { threadId: string, use
                 className='cursor-pointer object-cover'
                 onClick={handleClick}
             />
-            <p className='text-slate-400 font-light flex gap-1'>{likeLength} <span>{likeLength === 1 ?'Like':'Likes'}</span></p>
+            <p className='text-slate-400 font-light flex gap-1'>{likeLength} <span>{likeLength === 1 ? 'Like' : 'Likes'}</span></p>
         </div>
 
     )

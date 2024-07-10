@@ -5,15 +5,15 @@ import Like from "../models/like.model";
 
 interface Params {
     threadId: string,
-    userId: string
+    currentUserId: string
 }
 
-export async function createLike({ threadId, userId }: Params) {
+export async function createLike({ threadId, currentUserId }: Params) {
     try {
         connectToDB();
         const like = new Like({
             threadId,
-            userId
+            currentUserId
         });
         like.save();
     } catch (error: any) {
@@ -22,13 +22,13 @@ export async function createLike({ threadId, userId }: Params) {
 
 }
 
-export async function userLikedOrNot({ threadId, userId }: Params) {
+export async function userLikedOrNot({ threadId, currentUserId }: Params) {
     try {
         connectToDB();
-        const userLikes = await Like.findOne({ threadId, userId });
-        if(userLikes){
+        const userLikes = await Like.findOne({ threadId, currentUserId });
+        if (userLikes) {
             return true;
-        }else{
+        } else {
             return false;
         }
     } catch (error: any) {

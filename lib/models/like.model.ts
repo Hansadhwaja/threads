@@ -5,7 +5,7 @@ const likeSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    userId: {
+    currentUserId: {
         type: String,
         required: true
     }
