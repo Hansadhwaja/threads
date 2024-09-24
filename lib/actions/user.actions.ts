@@ -16,6 +16,7 @@ interface Params {
     path: string
 }
 
+
 export async function updateUser({
     userId,
     username,
@@ -26,7 +27,7 @@ export async function updateUser({
 }: Params): Promise<void> {
 
     try {
-        connectToDB();
+        await connectToDB();
         await User.findOneAndUpdate(
             { id: userId },
             {
@@ -50,7 +51,7 @@ export async function updateUser({
 
 export async function fetchUser(userId: string) {
     try {
-        connectToDB();
+        await connectToDB();
 
         return await User
             .findOne({ id: userId })
@@ -65,7 +66,7 @@ export async function fetchUser(userId: string) {
 
 export async function fetchUserPosts(userId: string) {
     try {
-        connectToDB();
+        await connectToDB();
 
         const threads = await User
             .findOne({ id: userId })
@@ -76,7 +77,7 @@ export async function fetchUserPosts(userId: string) {
                     {
                         path: "community",
                         model: Community,
-                        select: "name id image _id", // Select the "name" and "_id" fields from the "Community" model
+                        select: "name id image _id",
                     },
                     {
                         path: "children",
@@ -84,7 +85,7 @@ export async function fetchUserPosts(userId: string) {
                         populate: {
                             path: "author",
                             model: User,
-                            select: "name image id", // Select the "name" and "_id" fields from the "User" model
+                            select: "name image id",
                         },
                     },
                 ],
@@ -110,7 +111,7 @@ export async function fetchUsers({
     sortBy?: SortOrder;
 }) {
     try {
-        connectToDB();
+        await connectToDB();
         const skipAmount = (pageNumber - 1) * pageSize;
         const regex = new RegExp(searchString, 'i');
 
@@ -146,7 +147,7 @@ export async function fetchUsers({
 
 export async function getActivity(userId: string) {
     try {
-        connectToDB();
+        await connectToDB();
 
         const userThreads = await Thread.find({ author: userId });
 
@@ -177,7 +178,7 @@ export async function updateManualUser({
 }: { image: string, userId: string, username: string, name: string }): Promise<void> {
 
     try {
-        connectToDB();
+        await connectToDB();
         await User.findOneAndUpdate(
             { id: userId },
             {
@@ -189,6 +190,6 @@ export async function updateManualUser({
             { upsert: true }
         );
     } catch (error: any) {
-        throw new Error(`Failed to update profile photo :${error.message}`)
+        throw new Error(`Failed to update manual user :${error.message}`)
     }
 }

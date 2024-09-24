@@ -59,7 +59,7 @@ const SearchComponent = ({ initialUsers, userId }: SearchComponentProps) => {
                     <p className="no-result">No Users</p>
                 ) : (
                     <>
-                        {initialUsers.map((person) => (
+                        {users.map((person) => (
                             <UserCard
                                 key={person.id}
                                 id={person.id}

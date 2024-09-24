@@ -10,6 +10,10 @@ const LikeButton = ({ threadId, userId, currentUserId }: { threadId: string, use
     const [likeLength, setLikeLength] = useState(0);
 
     const handleClick = async () => {
+        if(!currentUserId){
+            alert('Please login to interact.');
+            return;
+        }
         if (userId === currentUserId) {
             alert('As the owner of this Thread, You can not like this Thread.');
         }

@@ -3,6 +3,7 @@ import { formatDateString } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import LikeButton from "../shared/LikeButton";
+import { currentUser } from "@clerk/nextjs";
 
 interface Props {
     id: string;
@@ -28,6 +29,8 @@ interface Props {
     isComment?: boolean;
 }
 
+
+
 const ThreadCard = ({
     id,
     currentUserId,
@@ -39,7 +42,6 @@ const ThreadCard = ({
     comments,
     isComment,
 }: Props) => {
-
     return (
         <article className={`flex w-full flex-col rounded-xl ${isComment ? 'px-0 xs:px-7' : 'bg-dark-2 p-7'} `}>
             <div className="flex items-start justify-between">
@@ -132,9 +134,3 @@ const ThreadCard = ({
 }
 
 export default ThreadCard;
-
-
-// const formattedTime = date.toLocaleTimeString([], {
-//     hour: "numeric",
-//     minute: "2-digit",
-//   });

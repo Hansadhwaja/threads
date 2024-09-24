@@ -31,14 +31,13 @@ const Page = async () => {
         name: user.name,
         username: user.username,
         image: user.image,
-      }));
+    }));
 
     if (!userInfo?.onboarded) redirect('/onboarding');
     return (
-        <section >
+        <section>
             <h1 className='head-text mb-10'>Search</h1>
             <SearchComponent initialUsers={serializedUsers} userId={user.id} />
-
         </section>
     )
 }

@@ -1,7 +1,6 @@
 
 import ThreadCard from "@/components/cards/ThreadCard";
 import { fetchThread } from "@/lib/actions/thread.actions";
-import { fetchUser, updateManualUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
 
 

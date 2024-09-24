@@ -24,8 +24,6 @@ export function formatDateString(dateString: string) {
 
   // Get user's local time zone
   const timeZone = 'Asia/Calcutta';
-  console.log(timeZone);
-  
 
   // Convert UTC date to local time zone
   const localDate = new Date(date.toLocaleString("en-US", { timeZone }));
@@ -37,7 +35,6 @@ export function formatDateString(dateString: string) {
         minute: "2-digit",
       });
 
-  console.log(`${formattedTime} - ${formattedDate}`);
 
   return `${formattedTime} - ${formattedDate}`;
 }
